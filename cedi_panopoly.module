@@ -1,0 +1,54 @@
+<?php
+/**
+ * @file
+ * Custom CEDI module used for the Panopoly distribution.
+ */
+
+function cedi_panopoly_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    // Move my_module_rdf_mapping() to the end of the list. module_implements()
+    // iterates through $implementations with a foreach loop which PHP iterates
+    // in the order that the items were added, so to move an item to the end of
+    // the array, we remove it and then add it.
+    $group = $implementations['cedi_panopoly'];
+    unset($implementations['cedi_panopoly']);
+    $implementations['cedi_panopoly'] = $group;
+  }
+}
+
+/**
+ * Allows us to set an 'Admin Title' on panel panes without requiring them to be
+ * reusable pieces of content.
+ *
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
+function cedi_panopoly_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'fieldable_panels_panes_entity_edit_form') {
+    // Unset the dependency on the reusable checkbox so we can add an admin title
+    // and an admin description without making it reusable.
+    unset($form['reusable']['#process']);
+    unset($form['reusable']['admin_title']['#dependency']);
+    unset($form['reusable']['admin_description']['#dependency']);
+  }
+  if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form') {
+    // Unset the dependency on the reusable checkbox so we can add an admin title
+    // and an admin description without making it reusable.
+    unset($form['reusable']['#process']);
+    unset($form['reusable']['admin_title']['#dependency']);
+    unset($form['reusable']['admin_description']['#dependency']);
+
+  }
+}
+
+function cedi_panopoly_node_view($node, $view_mode, $langcode) {
+  // Add css_class to all panelizer teaser view modes for nodes. Do this here
+  // instead of in the UI.
+  if (!empty($node->panelizer)) {
+    if (isset($node->panelizer[$view_mode])) {
+      $class = str_replace(':', '-', $node->panelizer[$view_mode]->name);
+      $node->panelizer[$view_mode]->css_class = $class;
+    }
+  }
+}

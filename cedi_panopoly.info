@@ -1,0 +1,4 @@
+name = Cedi Panopoly
+description = Module with overrides for the panopoly distribution.
+package = Cedi
+core = 7.x
