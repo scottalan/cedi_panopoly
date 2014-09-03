@@ -1,0 +1,17 @@
+#modal-content fieldset.widget-preview-single {
+  max-width: 960px;
+}
+
+#modal-content fieldset.widget-preview-single .fieldset-wrapper {
+  max-width : inherit;
+}
+
+#modal-content fieldset.widget-preview {
+  height: 500px;
+}
+
+/* Keeps long (right to left) views from being jacked when adding in a pane. */
+#modal-content .widget-preview .fieldset-wrapper {
+  max-width: 500px;
+  height: inherit;
+}
