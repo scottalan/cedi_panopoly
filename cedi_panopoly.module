@@ -31,19 +31,14 @@ function cedi_panopoly_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'fieldable_panels_panes_entity_edit_form') {
     // Unset the dependency on the reusable checkbox so we can add an admin title
     // and an admin description without making it reusable.
-    unset($form['reusable']['#process']);
     unset($form['reusable']['admin_title']['#dependency']);
     unset($form['reusable']['admin_description']['#dependency']);
-
-    // Set 'Create Revision' to false by default.
-    $form['revision']['revision']['#default_value'] = FALSE;
   }
   if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form') {
     // Unset the dependency on the reusable checkbox so we can add an admin title
     // and an admin description without making it reusable.
-    unset($form['reusable']['#process']);
-    unset($form['reusable']['admin_title']['#dependency']);
-    unset($form['reusable']['admin_description']['#dependency']);
+    unset($form['widget_settings']['reusable']['admin_title']['#dependency']);
+    unset($form['widget_settings']['reusable']['admin_description']['#dependency']);
 
   }
 }
