@@ -6,7 +6,7 @@
 
 function cedi_panopoly_module_implements_alter(&$implementations, $hook) {
   if ($hook == 'form_alter') {
-    // Move my_module_rdf_mapping() to the end of the list. module_implements()
+    // Move my_module_hook() to the end of the list. module_implements()
     // iterates through $implementations with a foreach loop which PHP iterates
     // in the order that the items were added, so to move an item to the end of
     // the array, we remove it and then add it.
@@ -25,19 +25,20 @@ function cedi_panopoly_module_implements_alter(&$implementations, $hook) {
  * @param $form_id
  */
 function cedi_panopoly_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id === 'views_content_views_panes_content_type_edit_form') {
+//    drupal_add_css(drupal_get_path('module', 'cedi_panopoly') . '/panopoly.css', array('group' => CSS_THEME, 'every_page' => FALSE));
+  }
   if ($form_id == 'fieldable_panels_panes_entity_edit_form') {
     // Unset the dependency on the reusable checkbox so we can add an admin title
     // and an admin description without making it reusable.
-    unset($form['reusable']['#process']);
     unset($form['reusable']['admin_title']['#dependency']);
     unset($form['reusable']['admin_description']['#dependency']);
   }
   if ($form_id == 'fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form') {
     // Unset the dependency on the reusable checkbox so we can add an admin title
     // and an admin description without making it reusable.
-    unset($form['reusable']['#process']);
-    unset($form['reusable']['admin_title']['#dependency']);
-    unset($form['reusable']['admin_description']['#dependency']);
+    unset($form['widget_settings']['reusable']['admin_title']['#dependency']);
+    unset($form['widget_settings']['reusable']['admin_description']['#dependency']);
 
   }
 }

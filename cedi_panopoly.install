@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * Set module weight for cedi_panopoly module.
+ */
+function cedi_panopoly_update_7000() {
+  db_query("UPDATE {system} SET weight = 1 WHERE name='cedi_panopoly'");
+}
