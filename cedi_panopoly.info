@@ -1,4 +1,8 @@
 name = Cedi Panopoly
-description = Module with overrides for the panopoly distribution.
-package = Cedi
+description = Feature with overrides for the panopoly distribution.
 core = 7.x
+package = Cedi
+dependencies[] = features
+dependencies[] = list
+features[features_api][] = api:2
+features[field_base][] = field_hide_featured_image
