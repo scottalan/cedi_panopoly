@@ -1,6 +1,12 @@
 <?php
 /**
  * @file
+ * Code for the Cedi Panopoly feature.
+ */
+
+include_once 'cedi_panopoly.features.inc';
+/**
+ * @file
  * Custom CEDI module used for the Panopoly distribution.
  */
 
