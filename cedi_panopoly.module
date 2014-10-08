@@ -47,6 +47,11 @@ function cedi_panopoly_form_alter(&$form, &$form_state, $form_id) {
     unset($form['widget_settings']['reusable']['admin_description']['#dependency']);
 
   }
+  if ($form_id === 'file_entity_add_upload' || $form_id === 'file_entity_edit') {
+    // Add a description to the 'Name' field.
+    $form['filename']['#description'] = '<span class="error">' . t('NOTICE: ') . '</span>' . t('Please change the filename to something like:
+    PAGE--DESCRIPTION. e.g., home-slider--empire-state-building OR event-calendar--top-image');
+  }
 }
 
 function cedi_panopoly_node_view($node, $view_mode, $langcode) {
