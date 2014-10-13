@@ -6,7 +6,4 @@ dependencies[] = features
 dependencies[] = list
 dependencies[] = panopoly_widgets
 features[features_api][] = api:2
-features[features_override_items][] = field_instance.fieldable_panels_pane-image-field_basic_image_image
-features[features_overrides][] = field_instance.fieldable_panels_pane-image-field_basic_image_image.widget|module
-features[features_overrides][] = field_instance.fieldable_panels_pane-image-field_basic_image_image.widget|type
 features[field_base][] = field_hide_featured_image
